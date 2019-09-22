@@ -1,0 +1,51 @@
+<html>
+     <head>
+          <title>Employee List</title>
+     </head>
+     <body>
+          <div id='root'>
+               <input type='text' id='search' placeholder='search...'/>
+               <!-- <ul id='list'></ul> -->
+          </div>
+          <script>
+               const rootHandler = document.getElementById('root')
+               const searchHandler = document.getElementById('search')
+               const h2Tag = document.createElement('h2')
+               rootHandler.appendChild(h2Tag)
+
+               const listHandler = document.createElement('ul')
+
+               const employees = [
+                    { id:1, name:'sushi', details:'SAP'},
+                    { id:2, name:'Abhu', details:'Oracle'},
+                    { id:3, name:'binu', details:'DM'},
+                    { id:4, name:'cathy', details:'UI'},
+                    { id:5, name:'dona', details:'Dev'},
+                    { id:6, name:'elga', details:'Tester'}
+               ]
+               function empList(employees){
+                    
+                    h2Tag.textContent =`Employees List - ${employees.length} `
+                    
+                    employees.sort().forEach((employee)=>{
+                         const liTag = document.createElement('li')
+                         liTag.textContent = employee.name
+                         listHandler.appendChild(liTag)
+                    })
+               }
+               
+               empList(employees)
+               rootHandler.appendChild(listHandler)
+               searchHandler.addEventListener('keyup',function(){
+                    console.log(searchHandler.value)
+                    listHandler.innerHTML = ''
+                    empList(employees.filter(employee => employee.name.includes(searchHandler.value)))
+               })
+               
+
+               
+               
+          </script>
+
+     </body>
+</html>

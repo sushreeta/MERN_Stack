@@ -1,0 +1,57 @@
+<html>
+     <head>
+          <title>
+               P-C-Component
+          </title>
+     </head>
+     <body>
+          <div id="root"></div>
+          <script src="./JS/react.development.js"></script>
+          <script src="./JS/react-dom.development.js"></script>
+          <script src="./JS/babel.js"></script>
+          <script type="text/babel">
+               const rootHandler = document.getElementById("root")
+               class AppComp extends React.Component{
+                    constructor(){
+                         super()
+
+                    }
+
+
+                    render(){
+                         return(
+                         <div>
+                              <h2>App Component</h2>
+                              <Parent title="Parent component"/>
+                         </div>
+                    )
+                    }
+               }
+
+               function Parent (props){
+                    return (
+                         <div>
+                              <h2>{props.title} </h2>
+                              <Child name="rakesh"/>
+                              <Child name="shyam"/>
+                         </div>
+                    )
+               }
+               
+               class Child extends React.Component{
+
+                    render(){
+                         return(
+                              <div>
+                                   <h3>Child component</h3>
+                                   <p>{this.props.name}</p>
+                              </div>
+                    )
+                    }
+               }
+          
+               ReactDOM.render(<AppComp/>,rootHandler)
+          
+          </script>
+     </body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+     <head>
+          <title>function</title>
+     </head>
+     <body>
+          <div id="root"></div>
+          <script src="./JS/react.development.js"></script>
+          <script src="./JS/react-dom.development.js"></script>
+          <script src="./JS/babel.js"></script>
+          <script type="text/babel">
+               const rootHandler = document.getElementById('root')
+               const products = [
+                    {name:'apple1', price:10},
+                    {name:'apple2', price:150},
+                    {name:'apple3', price:40}
+               ]
+               function Product(probs){
+                    return (
+                         <div>
+                              <h1>{probs.name}</h1>
+                              <h1>{probs.price}</h1>    
+                         </div>
+                    )
+               }
+               const ele = (
+                    <div>
+                         {products.map(function(prod){
+                              return <Product name={prod.name} price={prod.price}/>
+                         })}     
+                    </div>
+               )
+               ReactDOM.render(ele,rootHandler)
+          </script>
+     </body>
+</html>

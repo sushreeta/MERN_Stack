@@ -1,0 +1,59 @@
+<html>
+     <head>
+          <title>
+               Employeeform
+          </title>
+     </head>
+     <body>
+          <div id="root"></div>
+          <script src="./JS/react.development.js"></script>
+          <script src="./JS/react-dom.development.js"></script>
+          <script src="./JS/babel.js"></script>
+          <script type="text/babel">
+               const rootHandler = document.getElementById("root")
+               class EmployeeForm extends React.Component{
+                    constructor(props){
+                         super(props)
+                         this.state={
+                              text:'',
+                              charCount:0,
+                              wordCount:0
+                         }
+                         this.handleSubmit = this.handleSubmit.bind(this)
+                    }
+
+                    handleSubmit(e){
+                         e.preventDefault()
+                         const formText = e.target.value
+                         this.setState({
+                              charCount: this.state.text.split("").length,
+                              wordCount: this.state.text.split(" ").length
+                         })
+                         console.log(formText)
+                    }
+
+
+                    render(){
+                         return(
+                              <div>
+                                   <h2>Words & Char</h2>
+                                   <form onSubmit={this.handleSubmit}>
+                                        <label>
+                                             Text
+                                             <textarea value={this.state.text}> </textarea>
+                                        </label>
+                                        <br/>
+                                        <p>total char: {this.state.charCount}</p>
+                                        <p>total words: {this.state.wordCount}</p>
+                                        <input type="submit" />
+                                   </form>
+                              </div>     
+                         )
+                    }
+               }
+          
+          
+          ReactDOM.render(<EmployeeForm/>,rootHandler)
+          </script>
+     </body>
+</html>

@@ -1,0 +1,106 @@
+<html>
+
+<head>
+     <title>
+          Form Element
+     </title>
+</head>
+
+<body>
+     <div id="root"></div>
+     <script src="./JS/react.development.js"></script>
+     <script src="./JS/react-dom.development.js"></script>
+     <script src="./JS/babel.js"></script>
+     <script type="text/babel">
+               const rootHandler = document.getElementById("root")
+               class Registration extends React.Component{
+                    constructor(){
+                         console.log('constructor')
+                         super()
+                         this.state={
+                              name:'',
+                              email:'',
+                              password:'',
+                              profession:'',
+                              terms: false,
+                              professionData:[
+                                   {id:1, name:'Accountant'},
+                                   {id:2, name:'Software Enggineer'},
+                                   {id:3, name:'Audior'}
+                              ]
+                         }
+                    }
+                    handleNameChange = (e)=>{
+                         const name = e.target.value
+                         this.setState({name})
+                         console.log(name)
+                    }
+                    handleEmailChange = (e)=>{
+                         const email = e.target.value
+                         this.setState({email})
+                         console.log(email)
+                    }
+                    handlePasswordChange = (e)=>{
+                         const password = e.target.value
+                         this.setState({password})
+                         console.log(password)
+                    }
+                    handleProfessionChange = (e)=>{
+                         const profession = e.target.value
+                         this.setState({profession})
+                         console.log(this.state.profession)
+                    }
+                    handleTermChange = (e)=>{
+                         const terms = e.target.checked
+                         this.setState({terms})
+                         console.log(terms)
+                    }
+
+                    render(){
+                         console.log('render', this.state)
+                         return(
+                              //console.log('render', this.state)
+                              <div>
+                                   <h2>Register</h2>
+                                   <form>
+                                        <label>
+                                             Name:
+                                             <input type="text" value={this.state.name} onChange={this.handleNameChange}/>
+                                       </label>
+                                       <br/>
+                                       <label>
+                                             Email:
+                                             <input type="email" value={this.state.email} onChange={this.handleEmailChange}/>
+                                        </label>
+                                        <br/>
+                                        <label>
+                                             Password:
+                                             <input type="password" value={this.state.password} onChange={this.handlePasswordChange}/>
+                                        </label>
+                                        <br/>
+                                        <label>
+                                             Profession:
+                                             <select onChange={this.handleProfessionChange}>
+                                                  <option value=''>Select</option>
+                                                  {this.state.professionData.map( prof => {
+                                                       return <option value={prof.id} key={prof.id}>{prof.name}</option>
+                                                  })}
+
+                                             </select>
+                                        </label>
+                                        <br/>
+                                        <label>
+                                             Terms & Condition
+                                             <input type="checkbox" value={this.state.terms} onChange={this.handleTermChange}/>
+                                        </label>
+                                        <br/>
+                                        <input type="submit" value="Register" disabled={!this.state.terms}/>
+                                   </form>
+                              </div>
+                         )
+                    }
+               }
+               ReactDOM.render(<Registration/>,rootHandler)
+          </script>
+     </body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+     <head>
+          <title></title>
+     </head>
+     <body>
+          <script>
+               const userIds = [1,2,3,4,5]
+               
+               function makeApiCall(id){
+                    return new Promise(function(resolve, reject){
+                         const xhr = new XMLHttpRequest()
+                         xhr.open('GET', `https://jsonplaceholder.typicode.com/users/${id}`)
+                         xhr.send()
+                         
+                         xhr.onload = function(){
+                              resolve(JSON.parse(xhr.responseText))
+                         }
+                    })
+               }
+               const apis =[]
+
+               for(let i=0; i<userIds.length; i++){
+                    apis.push(makeApiCall(userIds[i]))
+               }
+
+               Promise.all(apis)
+                    .then(function(values){
+                         console.log(values)
+                    })
+          </script>
+     </body>
+</html>

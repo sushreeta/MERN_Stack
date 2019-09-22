@@ -1,0 +1,30 @@
+<html>
+     <head>
+          <title>ajax example</title>
+     </head>
+     <body>
+          <script>
+               const xhr = new XMLHttpRequest()
+               xhr.open('GET','https://jsonplaceholder.typicode.com/users')
+               xhr.send()
+               console.log(xhr)
+               xhr.onload = function(){ //this function is called once the data is successfully received from the server
+                    //data sent by server is in JSON format
+                    //data can be found in responseText property of the JSON object
+                    //we need to parse the data to convert JSON data to JS object
+
+                    // const data = xhr.responseText
+                    // console.log(typeof(data))
+                    // console.log(data)
+                    // console.log(JSON.parse(data))
+
+                    
+                    const data = JSON.parse(xhr.responseText)
+                    console.log(typeof(data))
+                    //data is object type or array, so all array operations can be done on it.
+                    console.log(data.length)
+
+               }
+          </script>
+     </body>
+</html>

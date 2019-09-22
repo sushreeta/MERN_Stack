@@ -1,0 +1,33 @@
+<html>
+   <head>
+       <title>form</title>
+   </head>
+   <body>
+       <div>
+               <form id="myForm">
+                       <label>Username:
+                           <input type="text" name="username" id="username"/>
+                       </label>
+                       <br/>
+                       <label for="email">Email:
+                           <input type="email" name="email" id="email"/>
+                       </label>
+                       <br/>
+                       <label>Password:
+                               <input type="password" name="password" id="password"/>
+                       </label>
+                       <br/>
+                       <input type="submit" />
+               </form>
+       </div>
+      
+       <script>
+           const formHandler = document.getElementById('myForm')
+           formHandler.addEventListener("submit", (e)=>{
+               e.preventDefault() //event object calling function preventDefault() to prevent the default submitting the data.
+              
+               console.log('form was submit')
+           })
+       </script>
+   </body>
+</html>

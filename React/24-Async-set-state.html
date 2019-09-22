@@ -1,0 +1,45 @@
+<html>
+     <head>
+          <title>
+               Event
+          </title>
+     </head>
+     <body>
+          <div id="root"></div>
+          <script src="./JS/react.development.js"></script>
+          <script src="./JS/react-dom.development.js"></script>
+          <script src="./JS/babel.js"></script>
+          <script type="text/babel">
+               const rootHandler = document.getElementById("root")
+               class ClickMe extends React.Component{
+                    constructor(props){
+                         super(props)
+                         this.state={
+                              count:0
+                         }
+                    }
+                    handleClick = () => {
+                         this.setState(prevState =>({
+                              count: prevState.count + 1
+                         }), () =>{
+                              console.log('callback function', this.state)
+                         })
+                         console.log('handleClick', this.state)
+                    }
+
+                    render(){
+                         console.log('render', this.state)
+                         return (
+                              <div>
+                                   <h1>{this.state.count}</h1>
+                                   <button onClick={this.handleClick}> up </button>
+                              </div>
+                         )
+                    }
+               }
+          
+          
+          ReactDOM.render(<ClickMe/>, rootHandler)
+          </script>
+     </body>
+</html>

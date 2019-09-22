@@ -1,0 +1,50 @@
+<html>
+     <head>
+          <title>
+               Event
+          </title>
+     </head>
+     <body>
+          <div id="root"></div>
+          <script src="./JS/react.development.js"></script>
+          <script src="./JS/react-dom.development.js"></script>
+          <script src="./JS/babel.js"></script>
+          <script type="text/babel">
+               const rootHandler = document.getElementById("root")
+               class ClickMe extends React.Component{
+                    constructor(){
+                         console.log('costructor')
+                         super()
+                         this.state={
+                              count:0
+                         }
+                    }
+                    handleCount=()=>{
+                         console.log('handleCount')
+                         this.setState(prevState=>({
+                              count: prevState.count + 1
+                         }))
+                    }
+                    render(){
+                         console.log('render')
+                         return(
+                              <div>
+                                   <h2>count</h2>
+                                   <h4>{this.state.count}</h4>
+                                   <Btn text="up" handle={this.handleCount}/>     
+                              </div>
+                         )
+                    }
+               }
+               function Btn(props){
+                    return(
+                         <div>
+                              <button onClick={props.handle}>{props.text}</button>
+                         </div>
+                    )
+               }
+          
+          ReactDOM.render(<ClickMe/>,rootHandler)
+          </script>
+     </body>
+</html>

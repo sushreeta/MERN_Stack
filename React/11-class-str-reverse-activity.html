@@ -1,0 +1,44 @@
+<html>
+     <head>
+          <title>reverse String</title>
+     </head>
+     <body>
+          <div id="root"></div>
+          <script src = "./JS/react.development.js"></script>
+          <script src="./JS/react-dom.development.js"></script>
+          <script src="./JS/babel.js"></script>
+          <script type="text/babel">
+               const rootHnadler = document.getElementById("root")
+
+               class Sentence extends React.Component{
+                    constructor(){
+                         super()
+                         this.state={
+                              str:'hello world'
+                         }
+                    }
+
+                    handleClick=()=>{
+                         this.setState((prvState)=>{
+                              return {
+                                   str:prvState.str.split('').reverse().join('')
+                              }
+                         })
+
+                    }
+
+                    render(){
+                         return (
+                              <div>
+                                   {this.state.str}
+                                   <br/>
+                                   <button onClick={this.handleClick}>reverse</button>
+                              </div>
+                         )
+                    }
+               }
+               ReactDOM.render(<Sentence/>, rootHnadler)
+
+          </script>
+     </body>
+</html>

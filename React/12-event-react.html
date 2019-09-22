@@ -1,0 +1,67 @@
+<html>
+     <head>
+          <title>
+               Event
+          </title>
+     </head>
+     <body>
+          <div id="root"></div>
+          <script src="./JS/react.development.js"></script>
+          <script src="./JS/react-dom.development.js"></script>
+          <script src="./JS/babel.js"></script>
+          <script type="text/babel">
+               const rootHandler = document.getElementById("root")
+               class ClickMe extends React.Component{
+                    constructor(props){
+                         super(props)
+                         this.handleClick3 = this.handleClick3.bind(this)
+                    }
+                    handleClick2(){
+                         console.log('click 2',this)
+                    }
+                    //this can be used in general but need to binf this inside constructor
+                    handleClick3(){
+                         console.log('click 3',this)
+                    }
+                    //this can be used in general
+                    handleClick4 = ()=>{
+                         console.log('click 4',this)
+                    }
+                    //use below to pass any arguements
+                    //how this is binding this object automatically without using arrow funtion at the time of defining it?
+                    handleClick5(num){
+                         console.log('click 5', num, this)
+                    }
+                    render(){
+                         return(
+                              <div>
+                                   <h2>onClick</h2>
+                                   <button onClick={()=>{
+                                        console.log('click 1',this)
+                                   }}>click1</button>
+
+                                   <button onClick={this.handleClick2.bind(this)}>click2</button>
+                                   
+                                   /*this can be used in general but need to binf this inside constructor*/
+                                   <button onClick={this.handleClick3}>click3</button>
+                                   
+                                   //this can be used in general
+                                   <button onClick={this.handleClick4}>click4</button>
+                                   
+                                   //use below to pass any arguements
+                                   <button onClick={()=>{
+                                        this.handleClick5(Math.random()*100)
+                                   }}>click5</button>
+                                   
+                              </div>
+
+
+                         )
+                    }
+               }
+          
+          
+          ReactDOM.render(<ClickMe/>,rootHandler)
+          </script>
+     </body>
+</html>

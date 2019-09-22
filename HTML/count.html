@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8" />
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <title>count</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+     <script src="main.js"></script>
+</head>
+<body>
+     <h1 id='value>'</h1>
+     <h1 id='value-2'></h1>
+     <button id='btn'>+</button>
+     <br>
+     <button id='btn-neg'>-</button>
+     <br>
+     <button id='btn-reset'>reset</button>
+     <script>
+          const valueHandler = getElementById('value')
+          const valueHandler2 = getElementById('value-2')
+          const btnHandler = getElementById('btn')
+          const btnDownHnadler = getElementById('btn-neg')
+          const btnResetHandler = getElementById('btn-reset')
+
+          const c1 ={
+               count:0,
+               up: function () {
+                    this.count += 1
+                    return this.count
+               },
+               down: function() {
+                    this.count -= 1
+                    return this.count
+               },
+               reset: function(){
+                    this.count=0
+                    return this.count
+               }
+          }
+          valueHandler.innerHTML = c1.count
+
+     </script>
+</body>
+</html>

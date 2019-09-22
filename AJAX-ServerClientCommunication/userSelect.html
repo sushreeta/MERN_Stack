@@ -1,0 +1,52 @@
+<!--Request server to server
+axios client to server or server to server-->
+
+<html>
+    <head>
+        <title>Select User</title>
+    </head>
+    <body>
+        <form>
+            <h2>Select the User</h2>
+            <label>User:
+                <select id="user">
+                    
+                </select>
+            </label>
+        </form>
+        <script>
+            const userHandler = document.querySelector("#user")
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(function(response){
+                    return response.json()
+                })
+                .then(function(users){
+                    users.forEach(user => {
+                        const optionHandler = document.createElement('option')
+                        optionHandler.setAttribute('value', user.id)
+                        optionHandler.innerHTML=user.name
+                        userHandler.appendChild(optionHandler)
+                    })
+                })
+                .catch( function(err){
+                    console.log(err)
+                })
+
+                userHandler.addEventListener('change', function(){
+                    const id=userHandler.value
+                    if(id){
+                        fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+                            .then(function(response){
+                                return response.json()
+                            })
+                            .then(function(user){
+                                console.log(user.id)
+                            })
+                            .catch(function(err){
+                                console.log(err)
+                            })
+                    }
+                })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+     <head>
+          <title>room</title>
+     </head>
+     <body>
+               <div id="root"></div>
+               
+               <script src="./JS/react.development.js"></script>
+               <script src="./JS/react-dom.development.js"></script>
+               <script src="./JS/babel.js"></script>
+               
+     
+               <script type="text/babel">
+                    const rootHandler = document.getElementById("root")
+                    const rooms = [
+                         {id:1, title:'homestay1',price:1000,location:'blr'},
+                         {id:2, title:'homestay2',price:3552,location:'bbi'},
+                         {id:3, title:'homestay3',price:5463,location:'clr'},
+                         {id:4, title:'homestay4',price:1234,location:'ooty'},
+                         {id:5, title:'homestay5',price:3522,location:'mysore'},
+                         {id:6, title:'homestay6',price:2044,location:'blr'}
+                    ]
+                    function Room(probs){
+                         return (
+                              <div>
+                                   <h4>{probs.title}</h4>
+                                   <h6>Price:{probs.price}, Location:{probs.location}</h6>
+                              </div>
+                         )
+                    }
+
+                    const ele = (
+                         <div>
+                              {rooms.map(function(room){
+                                   return <Room title={room.title} price={room.price} location={room.location}/>
+                              })}     
+                         </div>
+                    )
+                    ReactDOM.render(ele,rootHandler)
+
+               </script>
+     </body>
+</html>

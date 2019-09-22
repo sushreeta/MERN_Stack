@@ -1,0 +1,62 @@
+<html>
+     <head>
+          <title>
+               Event
+          </title>
+     </head>
+     <body>
+          <div id="root"></div>
+          <script src="./JS/react.development.js"></script>
+          <script src="./JS/react-dom.development.js"></script>
+          <script src="./JS/babel.js"></script>
+          <script src="https://unpkg.com/axios/dist/axios.js"></script>
+          
+          <script type="text/babel">
+               const rootHandler = document.getElementById("root")
+               class UserList extends React.Component{
+                    constructor(){
+                         super()
+                         console.log('constructor')
+                         this.state={
+                              users:[],
+                              isAdmin:true,
+                              isLoggedIn:true
+                         }
+                    }
+                    componentDidMount(){
+                         console.log('componentdidmount()')
+                         axios.get('https://jsonplaceholder.typicode.com/users')
+                         .then(response => {
+                              console.log('axios success function')
+                              const users=response.data
+                              this.setState({users})
+                         })
+                         .catch(err=>{
+                              console.log('axios failed to load')
+                         })
+                    }
+                    render(){
+                         console.log('render', this.state)
+                         return(
+                              <div>
+                                   <h2> User List - {this.state.users.length}</h2>
+                                   <h2>{this.state.users.address && this.state.users.address.city}</h2>
+
+                                   {this.state.isAdmin && <a href="">delete</a>}
+
+                                   {this.state.isLoggedIn?(
+                                        <h2>show account and logout page</h2>
+                                   ):(
+                                        <h2>show sign up and login page</h2>
+                                   )}
+                              </div>
+
+                         )
+                    }
+               }
+          
+          ReactDOM.render(<UserList/>, rootHandler)
+          
+          </script>
+     </body>
+</html>
